@@ -16,5 +16,6 @@
     "jsxImportSource": "remix/ui",
     "noEmit": true
   },
+  "include": ["app", "server", "worker", "scripts", "test", "server.ts"],
   "exclude": ["node_modules", "dist", ".wrangler", "tmp"]
 }
