@@ -1,0 +1,30 @@
+/**
+ * Cloudflare Workers configuration.
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ *
+ * `npm run build` (scripts/build.ts) produces dist/worker/index.js and
+ * dist/client; wrangler runs it automatically before `dev` and `deploy`.
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tipprunde-www",
+  "main": "dist/worker/index.js",
+  // Already bundled by scripts/build.ts (needs a per-module import.meta.url rewrite).
+  "no_bundle": true,
+  "compatibility_date": "2026-09-01",
+  "build": {
+    "command": "node scripts/build.ts",
+    "watch_dir": ["app", "worker", "public"],
+  },
+  "assets": {
+    "directory": "dist/client",
+    // Requests without a matching file (all pages) go to the Worker.
+    "not_found_handling": "none",
+  },
+  "vars": {
+    "UNTERBAU_API_URL": "https://unterbau.runde.tips/api/v1",
+  },
+  "observability": {
+    "enabled": true,
+  },
+}

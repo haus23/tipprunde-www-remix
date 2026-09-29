@@ -1,0 +1,24 @@
+{
+  "$schema": "./node_modules/remix/schema/remix.json",
+
+  // Browser-reachable source. Used by the dev asset server (app/assets.ts),
+  // the production client build (scripts/build.ts) and `remix assets`.
+  "assets": {
+    "rootDir": ".",
+    "basePath": "/assets",
+    "allowFiles": ["app/routes.ts", "app/**/public/**"],
+    "allowPackages": ["remix"],
+    "denyFiles": ["app/**/*.test.*"],
+  },
+
+  "doctor": {
+    "strict": true,
+  },
+
+  "test": {
+    "files": ["app/**/*.test.{ts,tsx}", "test/**/*.test.{ts,tsx}"],
+    "exclude": ["node_modules/**", "dist/**", ".wrangler/**"],
+    "type": ["server"],
+    "reporter": "spec",
+  },
+}
